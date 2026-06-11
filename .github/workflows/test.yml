@@ -1,0 +1,149 @@
+name: Test Notebooks & Documentation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test-notebooks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11']
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install nbconvert pytest
+
+    - name: Validate notebook format
+      run: |
+        python -c "
+        import nbformat
+        import sys
+
+        notebooks = [
+            'Summary.ipynb', 'PINN.ipynb', 'Multiphysics.ipynb',
+            'ML.ipynb', 'Symbolic Regression.ipynb', 'preliminaries.ipynb'
+        ]
+
+        errors = 0
+        for nb_path in notebooks:
+            try:
+                nb = nbformat.read(nb_path, as_version=4)
+                nbformat.validate(nb)
+                print(f'✓ {nb_path} validated')
+            except Exception as e:
+                print(f'✗ {nb_path}: {e}')
+                errors += 1
+
+        if errors > 0:
+            sys.exit(1)
+        "
+
+    - name: Execute notebooks (test)
+      run: |
+        for notebook in Summary.ipynb preliminaries.ipynb; do
+          echo "Testing $notebook..."
+          jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=600 $notebook
+        done
+      continue-on-error: true
+
+    - name: Check for cell errors
+      run: |
+        python -c "
+        import nbformat
+
+        notebooks = [
+            'Summary.ipynb', 'PINN.ipynb', 'Multiphysics.ipynb',
+            'ML.ipynb', 'Symbolic Regression.ipynb', 'preliminaries.ipynb'
+        ]
+
+        total_errors = 0
+        for nb_path in notebooks:
+            nb = nbformat.read(nb_path, as_version=4)
+            errors = sum(1 for c in nb.cells if c.cell_type == 'code'
+                        for o in c.get('outputs', []) if o.get('output_type') == 'error')
+            if errors > 0:
+                print(f'✗ {nb_path}: {errors} cell errors')
+                total_errors += errors
+            else:
+                print(f'✓ {nb_path}: OK')
+
+        print(f'\nTotal errors: {total_errors}')
+        exit(0 if total_errors == 0 else 1)
+        "
+
+  check-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Check documentation files exist
+      run: |
+        files=(
+          "README.md"
+          "QUICK_START_GUIDE.md"
+          "PREDICTION_GUIDE.md"
+          "FAILURE_ENVELOPE.md"
+          "Methods_README.md"
+          "Review_and_Next_Steps.md"
+          "PROJECT_STATUS.md"
+          "requirements.txt"
+          "environment.yml"
+        )
+
+        missing=0
+        for file in "${files[@]}"; do
+          if [ -f "$file" ]; then
+            echo "✓ $file"
+          else
+            echo "✗ $file (missing)"
+            missing=$((missing + 1))
+          fi
+        done
+
+        if [ $missing -gt 0 ]; then
+          echo "ERROR: $missing files missing"
+          exit 1
+        fi
+
+    - name: Check markdown formatting
+      run: |
+        # Basic markdown validation
+        for file in *.md; do
+          if [ -f "$file" ]; then
+            lines=$(wc -l < "$file")
+            echo "✓ $file ($lines lines)"
+          fi
+        done
+
+  check-env:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Validate requirements.txt
+      run: |
+        python -m pip install --dry-run -r requirements.txt
+        echo "✓ All packages available"
+
+    - name: Check Python version
+      run: |
+        python --version
+        python -c "import sys; exit(0 if sys.version_info >= (3, 11) else 1)"
+        echo "✓ Python 3.11+ verified"

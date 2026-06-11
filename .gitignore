@@ -1,0 +1,17 @@
+# environments / caches
+.venv/
+__pycache__/
+.cache/
+.claude/
+_scratch/
+*.log
+
+# copyrighted source documents (not redistributable)
+Dissertation - Peter Zehner 1972.pdf
+2017 Vorlesung 1 -18 Trocknungstechnik_v11.pdf
+F - Wärmeübertragung bei freier einphasiger Strömung.pdf
+
+# LaTeX build artifacts
+publication/main.aux
+publication/main.out
+publication/main.log

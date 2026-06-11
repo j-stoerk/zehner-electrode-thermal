@@ -1,0 +1,40 @@
+name: zehner-closure
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  # Python version
+  - python=3.11
+
+  # Core scientific computing
+  - numpy=2.4.6
+  - scipy=1.17.1
+  - pandas=3.0.3
+
+  # PyTorch (with CUDA support if needed; adjust to cpu if CUDA unavailable)
+  - pytorch::pytorch=2.12.0
+  - pytorch::pytorch-cuda=12.1
+
+  # Machine learning
+  - scikit-learn=1.9.0
+  - gpytorch=1.15.2
+
+  # Visualization
+  - matplotlib=3.10.9
+
+  # Jupyter
+  - jupyter=1.1.1
+  - nbconvert=7.16.4
+  - nbformat=5.10.4
+  - ipython=8.20.0
+
+  # Pip packages (for packages not in conda)
+  - pip
+  - pip:
+    - DeepXDE==1.15.0
+    - PySR==1.5.10
+    - MAPIE==0.10.2
+    - scikit-optimize==0.10.2
+    - SALib==1.5.2
+    - jax==0.10.1
+    - jaxlib==0.10.1

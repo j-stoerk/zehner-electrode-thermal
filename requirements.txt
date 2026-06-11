@@ -1,0 +1,39 @@
+# Zehner Closure Model Validation Project
+# Python 3.11+
+# Created: June 11, 2026
+
+# Core scientific computing
+numpy==2.4.6
+scipy==1.17.1
+pandas==3.0.3
+
+# Machine learning & neural networks
+torch==2.12.0
+scikit-learn==1.9.0
+gpytorch==1.15.2
+
+# Physics-informed neural networks
+DeepXDE==1.15.0
+
+# Differentiable computing
+jax==0.10.1
+jaxlib==0.10.1
+
+# Symbolic regression
+PySR==1.5.10
+
+# Uncertainty quantification & surrogate modeling
+MAPIE==0.10.2
+scikit-optimize==0.10.2
+SALib==1.5.2
+
+# Visualization
+matplotlib==3.10.9
+
+# Jupyter & notebooks
+jupyter==1.1.1
+nbconvert==7.16.4
+nbformat==5.10.4
+
+# Optional: for development/debugging
+ipython==8.20.0
