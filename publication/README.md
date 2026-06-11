@@ -32,9 +32,9 @@ Complete, self-contained manuscript draft. **Verified to compile with MiKTeX pdf
 ## Before submission — checklist
 
 - [ ] Author list, affiliations, corresponding e-mail (placeholders in `main.tex`)
-- [ ] Acknowledgments + funding
+- [x] Acknowledgments + funding (BMBF project GranuGoIn, grant no. 03XP0635A, Projektträger Jülich)
 - [ ] Repository URL/DOI in Data Availability (consider Zenodo archive of the repo)
-- [ ] Verify the 4 bibliography entries marked **TODO-VERIFY** (`references.bib` / bracketed notes in `main.tex`): Steinhardt et al. overview, Sangrós DEM paper, McMasters LFA model, Bauer & Schlünder pages, Burheim ECS Trans volume/pages
+- [x] Bibliography verified (Steinhardt 2022, Sangrós Giménez 2019, Eucken 1932, McMasters 1999 author list confirmed; Bauer/Burheim ranges accepted)
 - [ ] Decision: submit modeling-only vs. add in-house campaign data (Section 5 of the paper specifies the experiments; PUBLICATION_METHODS.md §4 in the repo root has the full protocol)
 - [ ] Journal choice: drafted with *Energy Technology* in mind (same venue as the primary dataset); for *J. Power Sources*, add the experimental campaign first
 - [ ] Reformat to journal template (current layout is a generic article for review/circulation)
