@@ -1,0 +1,363 @@
+================================================================================
+VORTRAGSSKRIPT (20 MINUTEN, DEUTSCH)
+Thema:    Wärmeleitfähigkeit von Elektrodenbeschichtungen --
+          ein praxistaugliches Modell für Kalandrieren und Qualitätskontrolle
+Publikum: Elektrodeningenieure (wenig Modellierungs-Vorwissen)
+Folien:   Die Hinweise [FOLIE] beziehen sich auf die Abbildungen/Tabellen
+          des Papers (publication/figures/fig1...fig6 + Tabellen 1-3).
+Richtwert: ca. 2.400 Woerter Sprechtext = ca. 19-20 Minuten.
+================================================================================
+
+
+--------------------------------------------------------------------------------
+[0:00] FOLIE 1 -- Titel
+--------------------------------------------------------------------------------
+
+Guten Tag zusammen. Ich moechte Ihnen heute eine Arbeit vorstellen, die auf den
+ersten Blick nach Theorie klingt -- es geht um ein Modell fuer die
+Waermeleitfaehigkeit von Elektrodenbeschichtungen. Aber ich verspreche Ihnen:
+Am Ende geht es um drei sehr praktische Dinge. Erstens: Was macht unser
+Kalander eigentlich mit der Waermeleitfaehigkeit der Beschichtung? Zweitens:
+Welche Stellschrauben in der Rezeptur -- Leitruss, Leitgraphit, Binder --
+bestimmen sie? Und drittens: Kann man aus einer schnellen Waermemessung
+Qualitaetsinformationen gewinnen, die wir heute inline gar nicht haben --
+zum Beispiel ueber die Anbindung der Beschichtung an die Folie?
+
+
+--------------------------------------------------------------------------------
+[1:00] FOLIE 2 -- Motivation: Warum Waermeleitfaehigkeit?
+--------------------------------------------------------------------------------
+
+Kurz zur Einordnung, warum die Groesse ueberhaupt wichtig ist.
+
+Eine Zelle altert schneller, wenn sie warm wird. Sie altert ungleichmaessig,
+wenn es Temperaturunterschiede im Inneren gibt. Und im schlimmsten Fall ist ein
+lokaler Hotspot der Ausloeser fuer thermisches Durchgehen. Wer das im Design
+beherrschen will, braucht thermische Simulationen -- und jede dieser
+Simulationen braucht als Eingabe die effektive Waermeleitfaehigkeit jeder
+Schicht: Anode, Kathode, Separator.
+
+Der Engpass ist die Richtung senkrecht zu den Schichten. Da liegen wir
+zellseitig typischerweise bei 0,15 bis 0,8 Watt pro Meter und Kelvin -- das
+ist etwa hundertmal schlechter als in der Ebene. Die Waerme muss also genau
+durch die poroesen Schichten hindurch, um die es heute geht.
+
+Und jetzt der Punkt, der fuer uns als Fertigung interessant ist: Diese
+Leitfaehigkeit ist keine Stoffkonstante aus dem Tabellenbuch. Sie haengt stark
+davon ab, was wir in der Produktion tun. In den Messdaten, die ich gleich
+zeige, steigt die Leitfaehigkeit einer Graphitanode durchs Kalandrieren von
+etwa 1,5 auf 2,4 Watt pro Meter Kelvin -- rund 60 Prozent. Wer in der
+Simulation einen festen Wert einsetzt, hat also einen versteckten,
+prozessabhaengigen Fehler drin.
+
+
+--------------------------------------------------------------------------------
+[2:30] FOLIE 3 -- Was ist ein "Modell" hier? (fuer Nicht-Modellierer)
+--------------------------------------------------------------------------------
+
+Ein Wort zur Methode, ganz ohne Mathematik.
+
+Man kann die Waermeleitung durch eine Beschichtung auf zwei Arten berechnen.
+Entweder man baut die Mikrostruktur im Rechner nach -- jedes Partikel einzeln --
+und simuliert. Das ist genau, aber langsam und aufwendig. Oder man benutzt
+eine sogenannte geschlossene Formel: Man steckt Porositaet,
+Partikelleitfaehigkeit und Porenfuellung hinein und bekommt sofort die
+effektive Leitfaehigkeit heraus. So eine Formel rechnet in Mikrosekunden,
+man versteht jeden Term -- und man kann sie auch rueckwaerts benutzen, dazu
+spaeter mehr.
+
+Die bekannteste dieser Formeln stammt von Zehner, Bauer und Schluender --
+entwickelt in den Siebzigern fuer Kugelschuettungen, also im Grunde fuer
+Kies im Rohr. Das Bild dahinter passt ueberraschend gut auf eine Elektrode:
+Partikel, die sich beruehren, dazwischen Poren. Genau deshalb wird diese
+Formel auch in der Batterie-Literatur ueberall benutzt.
+
+Aber: Sie wurde fuer Millimeter-Kugeln gemacht. Unsere Partikel sind
+Mikrometer gross, unsere Poren noch kleiner -- und unser Kalander veraendert
+die Struktur. An genau zwei Stellen geht die alte Formel deshalb schief.
+Diese zwei Stellen haben wir repariert. Das ist die ganze Arbeit in einem
+Satz.
+
+
+--------------------------------------------------------------------------------
+[4:00] FOLIE 4 -- Reparatur 1: Gas in sehr kleinen Poren (fig1_knudsen)
+--------------------------------------------------------------------------------
+
+Erste Reparatur: das Gas in den Poren.
+
+Luft leitet Waerme, indem Molekuele zusammenstossen und Energie weitergeben --
+wie eine Eimerkette. Ein Luftmolekuel fliegt bei Raumbedingungen im Schnitt
+etwa 67 Nanometer weit, bevor es das naechste Molekuel trifft.
+
+Jetzt schauen Sie sich unsere Poren an. In der Elektrode: wenige Mikrometer --
+da geht die Eimerkette noch. Im Separator: 40 bis 60 Nanometer. Die Pore ist
+also SCHMALER als die Flugstrecke des Molekuels. Das Molekuel trifft nie einen
+Kollegen -- es prallt nur noch von Wand zu Wand. Aus dem waermetragenden
+Medium wird, wenn Sie so wollen, ein einsamer Bote in einem leeren Korridor.
+
+[FOLIE: Abbildung 1 -- Kurve "wieviel Gasleitung bleibt uebrig" ueber der
+Porengroesse, mit Markern fuer Anode, Kathode, Separator]
+
+Die Zahlen: Bei der Elektrode kostet dieser Effekt drei bis sechs Prozent der
+Leitfaehigkeit -- klein, aber systematisch, und in der Groessenordnung der
+Messgenauigkeit, also mitnehmen. Beim Separator kostet er 84 Prozent der
+Gasleitung in den Poren. Wer da mit dem Tabellenwert fuer Luft rechnet, liegt
+massiv daneben.
+
+Ein Detail, das fuer alle wichtig ist, die mit Laser-Flash-Messungen arbeiten:
+Diese Geraete spuelen oft mit Helium. Helium-Molekuele fliegen fast dreimal so
+weit wie Luftmolekuele -- der Effekt ist dort also fast dreimal so gross. Eine
+"trockene" Leitfaehigkeit haengt damit davon ab, welches Gas in den Poren ist
+und bei welchem Druck. Das klingt erst wie eine Komplikation -- wir machen
+daraus am Ende ein Validierungsexperiment.
+
+Noch eine Pointe zum Separator: Die alten Modelle treffen den Messwert dort
+scheinbar ganz gut. Aber sie tun das wie eine kaputte Uhr, die zweimal am Tag
+die richtige Zeit zeigt: Sie ueberschaetzen die Gasleitung und unterschaetzen
+gleichzeitig das Polymergeruest -- zwei Fehler, die sich zufaellig aufheben.
+Sobald man Gas oder Druck aendert, fliegt das auf.
+
+
+--------------------------------------------------------------------------------
+[7:00] FOLIE 5 -- Die Messdaten: Was der Kalander wirklich tut (fig3)
+--------------------------------------------------------------------------------
+
+Jetzt zur zweiten, fuer Sie wahrscheinlich spannenderen Reparatur. Dazu
+brauchen wir Messdaten.
+
+Wir nutzen einen oeffentlich verfuegbaren Datensatz vom KIT -- Gandert und
+Kollegen, 2023. Die haben etwas sehr Schoenes gemacht: vier Elektrodentypen --
+zwei Graphitanoden, eine NMC622- und eine NMC811-Kathode -- jeweils in sechs
+bis acht Kalandrierstufen vermessen. Insgesamt 27 Zustaende. Also genau die
+Frage: Was passiert mit der Waermeleitfaehigkeit entlang des Kalandrierwegs?
+
+[FOLIE: Abbildung 3 -- Messpunkte ueber der Porositaet, vier Felder]
+
+Das Ergebnis ist auf den ersten Blick verwirrend: Die Leitfaehigkeit faellt
+beim leichten Kalandrieren erst AB, durchlaeuft ein Tal und steigt erst bei
+starker Verdichtung wieder an. Eine U-Form.
+
+Warum ist das verwirrend? Jedes Modell, das nur die Porositaet kennt, sagt:
+weniger Poren, mehr Feststoff, mehr Leitung -- die Kurve kann nur steigen.
+Die KIT-Gruppe hat zwei moderne Modelle aus der Literatur gegen ihre Daten
+getestet, eines davon eine aufwendige Partikelsimulation. Beide steigen
+monoton. Beide verfehlen die U-Form. Und unsere Basis-Formel zunaechst auch.
+
+Der Hinweis, woran es liegt, steckt im selben Paper: Die U-Form der
+Leitfaehigkeit korreliert mit der HAFTUNG der Beschichtung auf der Folie.
+Die faellt beim Kalandrieren auch erst ab und steigt dann wieder.
+
+
+--------------------------------------------------------------------------------
+[9:00] FOLIE 6 -- Reparatur 2: Bruecken (fig4 + Ablations-Tabelle)
+--------------------------------------------------------------------------------
+
+Das physikalische Bild ist fuer Elektrodenbauer sehr greifbar.
+
+Nach dem Beschichten und Trocknen haelt die Schicht durch ein Netzwerk aus
+Kontakten zusammen: Binderstege, Leitrussbruecken, Graphitflocken, die
+aufeinander liegen, und der Kontakt zur Folie. Ueber genau diese Bruecken
+fliesst auch die Waerme.
+
+Was macht der Kalander? Bei moderater Linienlast schert er die Schicht --
+und zerstoert dabei einen Teil dieser Bruecken. Die Haftung sinkt, die
+Waermeleitung sinkt. Bei hoher Linienlast passiert das Gegenteil: Partikel
+verhaken sich ineinander, druecken sich bei der Kathode sogar nachweislich
+in die weiche Aluminiumfolie -- das sieht man in den REM-Bildern des
+KIT-Papers. Es entstehen neue Kontakte. Der Kalander zerstoert also erst die
+Bruecken, die er spaeter wieder aufbaut.
+
+Genau das haben wir in die Formel eingebaut: einen Brueckenanteil, der vom
+Verdichtungsgrad abhaengt. Drei Kennzahlen pro Rezeptur: wie viele Bruecken
+es nach dem Beschichten gibt, wie schnell der Kalander sie zerstoert, und ab
+wann das Verhaken einsetzt.
+
+[FOLIE: Abbildung 4 + Tabelle "Ablation"]
+
+Funktioniert das? Die Tabelle zeigt es in drei Stufen. Ohne Brueckenterm:
+im Mittel 31 Prozent Fehler ueber alle 27 Zustaende. Mit konstantem
+Brueckenanteil: 13,5 Prozent. Mit kalandrierabhaengigem Brueckenanteil:
+4,5 Prozent -- das ist die Streuung der Messung selbst. Genauer geht es mit
+diesen Daten prinzipiell nicht. Und die U-Form wird reproduziert -- nach
+unserem Kenntnisstand zum ersten Mal ueberhaupt.
+
+Wichtig fuer die Einordnung: Das Modell hat pro Elektrodenfamilie nur vier
+Parameter, und jeder hat eine physikalische Bedeutung. Der
+Ausgangs-Brueckenanteil, den die Anpassung findet, liegt uebrigens genau in
+dem Bereich, den das VDI-Waermeatlas fuer Kugelkontakte tabelliert -- ein
+gutes Zeichen, dass wir nicht einfach Kurven biegen.
+
+
+--------------------------------------------------------------------------------
+[12:00] FOLIE 7 -- Was die Parameter uns ueber die Rezeptur sagen (Tabelle 3)
+--------------------------------------------------------------------------------
+
+Jetzt der Teil, der direkt in Richtung Rezepturentwicklung geht. Wenn die
+Parameter Physik sind, kann man sie zwischen den vier Elektroden vergleichen.
+Eine Vorbemerkung: Man muss in VOLUMEN denken, nicht in Gewichtsprozent.
+Binder und Russ sind leicht, NMC ist schwer -- acht Gewichtsprozent Inaktives
+in der Kathode sind in Wirklichkeit zehn bis achtzehn Volumenprozent.
+
+Drei Befunde:
+
+Erstens: Die Graphitanoden haben pro Volumenanteil Inaktivmaterial rund
+zwanzigmal wirksamere Waermebruecken als die Kathoden. Der Grund: Weiche
+Graphitflocken verformen sich plastisch und bruecken sich selbst --
+Flocke auf Flocke, hochleitfaehig. Harte NMC-Kugeln koennen das nicht; bei
+denen laeuft alles ueber das Additivnetzwerk.
+
+Zweitens, innerhalb der Kathoden: Die NMC622 hat zwei Gewichtsprozent
+Leitgraphit zusaetzlich zum Russ -- und doppelt so wirksame Bruecken wie die
+NMC811, die nur Russ hat. Zwei Prozent Flockengraphit schlagen also
+zusaetzlichen Russ etwa um den Faktor zwei. Das ist der klarste
+Rezeptur-Hebel im ganzen Datensatz.
+
+Drittens, der Binder: Wie schnell der Kalander das Brueckennetzwerk zerstoert,
+sortiert sich exakt nach der Bindermechanik. Die steifen PVDF-Systeme der
+Kathoden verlieren ihr Netzwerk zwei- bis viermal schneller pro
+Verdichtungseinheit als die gummiartigen CMC/SBR-Systeme der Anoden. Elastische
+Bruecken dehnen sich, steife brechen.
+
+Daraus drei Faustregeln: Wer thermische Anbindung will, nimmt etwas
+Flockengraphit statt mehr Russ. Wer stark kalandriert, faehrt mit
+elastischem Co-Binder besser. Und: den Kalandrier-Arbeitspunkt nicht
+ausgerechnet ins Tal der U-Kurve legen -- dort sind Haftung UND
+Waermeleitung gleichzeitig am schlechtesten. Entweder leichter kalandrieren
+oder bewusst durchs Tal hindurch in den Verhakungsbereich.
+
+Eine ehrliche Einschraenkung: Diese Bruecken-Kennzahlen sind
+rezepturspezifisch. Eine Kalibrierung von der 622 auf die 811 zu uebertragen
+funktioniert nicht -- wir konnten aber zeigen, dass fast der gesamte
+Uebertragungsfehler in EINER Kennzahl steckt, dem Ausgangs-Brueckenanteil.
+Praktisch heisst das: eine einzige Messung am unkalandrierten Blatt der
+neuen Rezeptur, und die Kalibrierung sitzt wieder. Komplett neu kalibrieren
+heisst: sechs Kalandrierstufen, ein Nachmittag am Kalander.
+
+
+--------------------------------------------------------------------------------
+[15:30] FOLIE 8 -- Rueckwaertsbetrieb: Qualitaetskontrolle (fig6)
+--------------------------------------------------------------------------------
+
+Jetzt zum dritten Versprechen vom Anfang: das Modell rueckwaerts benutzen.
+
+Die Formel ist so gebaut, dass man sie exakt umkehren kann. Statt
+"Porositaet rein, Leitfaehigkeit raus" also: "gemessene Leitfaehigkeit rein,
+Porositaet raus".
+
+[FOLIE: Abbildung 6 -- Paritaetsplot 200 Blaetter]
+
+Wir haben das an einem simulierten Produktionslos durchgespielt: 200
+kalandrierte Blaetter mit realistischer Kalanderdrift, Messrauschen drei
+Prozent -- das ist, was eine schnelle thermische Messung typischerweise kann.
+Ergebnis: Die Porositaet kommt auf plus/minus 0,008 absolut zurueck. Bei
+einem ueblichen Spezifikationsfenster von plus/minus 0,02 ist das brauchbar;
+mit vier Wiederholmessungen wird es komfortabel.
+
+Aber -- und das ist mir wichtiger: Porositaet koennen wir inline schon heute
+messen, ueber Dicke und Flaechengewicht. Der eigentliche Gewinn liegt
+woanders. Das kalibrierte Modell sagt uns naemlich, WELCHER Anteil der
+Waerme ueber die Bruecken fliesst: im unkalandrierten Zustand zwischen 16 und
+66 Prozent, je nach Elektrode. Wenn das Brueckennetzwerk leidet --
+Delamination, Binderaufschwimmen nach dem Trockner, schlechte
+Folienanbindung -- dann verschiebt sich eine thermische Messung um das
+Fuenf- bis Zwanzigfache des Messrauschens. Das sieht man mit einer einzigen
+Messung.
+
+Und fuer Anbindungsqualitaet gibt es heute schlicht keinen Inline-Monitor.
+Haftzugpruefung ist zerstoerend und offline. Eine schnelle thermische Messung
+hinter dem Trockner oder Kalander waere der erste direkte Inline-Indikator
+fuer genau die Groesse, deren Korrelation mit der Waermeleitung das KIT
+unabhaengig gemessen hat.
+
+
+--------------------------------------------------------------------------------
+[18:00] FOLIE 9 -- Was noch fehlt: das Validierungsexperiment
+--------------------------------------------------------------------------------
+
+Was ich Ihnen heute gezeigt habe, ist an veroeffentlichten Daten kalibriert
+und getestet. Was noch fehlt, ist die Bestaetigung der Mechanismen an
+eigenen Elektroden. Das Experiment dafuer ist klein:
+
+Pro Rezeptur etwa 26 Blaetter aus einer Charge, sechs Kalandrierstufen.
+Porositaet klassisch ueber Flaechengewicht, Dicke und Pyknometer. Leitfaehigkeit
+per Laser-Flash, trocken und elektrolytgetraenkt. Dazu zwei Besonderheiten:
+
+Erstens die Zwei-Druck-Messung: dieselbe trockene Probe einmal bei
+Normaldruck, einmal bei Unterdruck messen. Die Gasleitung in den Poren
+haengt vom Druck ab, das Feststoffgeruest nicht. Die Differenz isoliert also
+sauber den Knudsen-Effekt -- und entlarvt im Separatorfall die kaputte Uhr.
+
+Zweitens die Haftungskorrelation: Haftzugfestigkeit an jeder Kalandrierstufe
+mitmessen. Wenn unser Brueckenbild stimmt, muessen Haftung und
+Brueckenanteil dieselbe Talform zeigen. Wenn nicht, ist das Modell an der
+Stelle widerlegt -- auch das waere ein Ergebnis.
+
+Aufwand insgesamt: ein Nachmittag Kalander, zwei Tage Messung pro Rezeptur.
+
+
+--------------------------------------------------------------------------------
+[19:00] FOLIE 10 -- Zusammenfassung
+--------------------------------------------------------------------------------
+
+Drei Dinge zum Mitnehmen.
+
+Erstens: Die Waermeleitfaehigkeit unserer Beschichtungen ist eine
+Prozessgroesse. Der Kalander veraendert sie um Dutzende Prozent, und zwar
+nicht monoton -- erst runter, dann rauf. Wer feste Tabellenwerte simuliert,
+traegt diesen Fehler mit sich herum.
+
+Zweitens: Mit zwei physikalisch begruendeten Erweiterungen -- Gasverduennung
+in kleinen Poren und ein kalandrierabhaengiger Brueckenanteil -- beschreibt
+eine einfache, schnelle Formel die Messdaten bis an deren Messgenauigkeit.
+Die Parameter sind keine Fitkonstanten, sondern lesbar: Sie liefern
+Rezeptur-Faustregeln zu Leitgraphit, Bindermechanik und Kalandrier-Arbeitspunkt.
+
+Drittens: Rueckwaerts betrieben wird aus der Formel ein Messinstrument --
+Porositaet als Plausibilisierung, vor allem aber ein Kandidat fuer den ersten
+Inline-Monitor der Anbindungsqualitaet.
+
+Alles -- Code, Daten, Manuskript -- liegt offen auf GitHub unter
+j-stoerk/zehner-electrode-thermal. Die Arbeit entstand mit Unterstuetzung des
+BMBF im Projekt GranuGoIn.
+
+Vielen Dank -- ich freue mich auf Ihre Fragen.
+
+
+--------------------------------------------------------------------------------
+ANHANG: Voraussichtliche Fragen + Kurzantworten (fuer die Diskussion)
+--------------------------------------------------------------------------------
+
+F: "Gilt das auch fuer unsere Rezepturen?"
+A: Die Struktur des Modells ja, die Bruecken-Kennzahlen sind rezeptur-
+   spezifisch. Neukalibrierung: 6 Kalandrierstufen. Rezepturwechsel innerhalb
+   einer Chemie: eine einzige Messung am unkalandrierten Blatt reicht zum
+   Nachjustieren.
+
+F: "Warum nicht einfach Partikelsimulation?"
+A: Tausendfach teurer pro Auswertung, und die heutigen Strukturgeneratoren
+   bilden die Kontaktzerstoerung/-neubildung durch den Kalander gar nicht ab --
+   genau daran sind sie an diesen Daten gescheitert. Die Formel rechnet in
+   Mikrosekunden und laesst sich umkehren -- das braucht man fuer QC.
+
+F: "Wie sicher ist der Separator-Wert?"
+A: Dort machen wir bewusst nur Schranken statt Punktwerten -- die Morphologie
+   (gestrecktes Polymergeruest) passt nicht zum Kugelbild. Die Messwerte
+   liegen sauber zwischen unseren Schranken. Die Zwei-Druck-Messung wuerde
+   das endgueltig klaeren.
+
+F: "Trocken oder getraenkt gemessen -- was zaehlt?"
+A: Beides hat seinen Platz: getraenkt fuer die fertige Zelle (Faktor 3-4
+   hoeher), trocken fuer Trockner, Trockenraum und QC. Achtung bei
+   Laser-Flash: Spuelgas = Porengas, das geht in den Wert ein.
+
+F: "Was kostet die thermische QC-Messung?"
+A: Kommerzielle Geraete (Laser-Flash, Transient Plane Source) mit 2-5 %
+   Reproduzierbarkeit existieren; fuer inline braeuchte es eine
+   Machbarkeitsstudie am Band -- das ist der naechste Schritt nach der
+   Laborvalidierung.
+
+F: "Woher kommen die Literaturdaten?"
+A: Kalandrierreihe: Gandert et al. 2023 (KIT), open access, 4 Elektroden x
+   27 Zustaende. Separator- und Getraenkt-Anker: Richter 2017, Burheim 2013,
+   Marconnet-Gruppe 2018. Alle Transkriptionen mit Quellenangabe im Repo.
+================================================================================
