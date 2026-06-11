@@ -122,7 +122,7 @@ for ax, (name, s) in zip(axes, SYSTEMS.items()):
     ax.plot(psi_grid, dno, ":", color="C3", label="dry, continuum")
     ax.plot(psi_grid, dkn, "-", color="C3", label="dry, Knudsen")
     ax.axvspan(0.25, 0.35, color="green", alpha=0.08, lw=0)
-    ax.set_xlabel(r"porosity $\psi$")
+    ax.set_xlabel(r"porosity $\varepsilon$")
     ax.grid(True)
 for ax, lbl, name in zip(axes, "abc", SYSTEMS):
     ax.set_title(f"({lbl}) {name}")
@@ -145,7 +145,7 @@ for ax, (name, fam) in zip(axes, FAM.items()):
     ax.plot(psi_plot, mid, "-", color="C0", label=r"ZBS+Kn, $\varphi=0$")
     ax.plot(sub.porosity, sub.lambda_co_meas, "ks", ms=3.2, label="measured")
     ax.invert_xaxis()
-    ax.set_xlabel(r"$\psi$")
+    ax.set_xlabel(r"$\varepsilon$")
     ax.grid(True)
 for ax, lbl, name in zip(axes, "abcd", FAM):
     ax.set_title(f"({lbl}) {TITLES[name]}")
@@ -169,7 +169,7 @@ for ax, (name, fam) in zip(axes, FAM.items()):
     ax.plot(psi_tr, cal, "-", color="C3", label=r"calibrated $\varphi(\Pi)$")
     ax.plot(sub.porosity, sub.lambda_co_meas, "ks", ms=3.2, label="measured")
     ax.invert_xaxis()
-    ax.set_xlabel(r"$\psi$")
+    ax.set_xlabel(r"$\varepsilon$")
     ax.grid(True)
 for ax, lbl, name in zip(axes, "abcd", FAM):
     ax.set_title(f"({lbl}) {TITLES[name]}")
@@ -200,7 +200,7 @@ hybrids = [
     (r"+811 $(\varphi_0,a,b)$",            [p622[0], p811[1], p811[2], p811[3]]),
     ("811 self-fit",                       [p811[0], p811[1], p811[2], p811[3]]),
 ]
-fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.5))
+fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.6), gridspec_kw={"wspace": 0.45})
 ax = axes[0]
 ax.plot(ls_grid, prof_mape, "o-", color="C3", ms=3.5)
 ax.axhline(5, color="gray", ls=":", lw=0.8)
@@ -214,9 +214,10 @@ ax2.set_ylabel(r"compensating $\varphi_0$", color="C0")
 ax2.tick_params(axis="y", colors="C0", labelsize=7)
 ax = axes[1]
 vals = [mape_family("NMC811", p) for _, p in hybrids]
-ax.bar([h[0] for h in hybrids], vals, color=["C3", "C1", "C0", "C0", "C2"], width=0.65)
+ax.bar(range(len(vals)), vals, color=["C3", "C1", "C0", "C0", "C2"], width=0.65)
+ax.set_xticks(range(len(vals)))
+ax.set_xticklabels([h[0] for h in hybrids], rotation=16, ha="right", fontsize=6.5)
 ax.set_ylabel("MAPE on NMC811 [%]")
-ax.tick_params(axis="x", labelsize=6.3)
 ax.grid(True, axis="y")
 fig.savefig(os.path.join(OUT, "fig5_error.pdf"))
 plt.close(fig)
@@ -243,16 +244,16 @@ lims = [psi_true.min() - 0.01, psi_true.max() + 0.01]
 ax.plot(lims, lims, "k--", lw=0.8)
 ax.axvspan(0.28, 0.32, color="green", alpha=0.07, lw=0)
 ax.axhspan(0.28, 0.32, color="green", alpha=0.07, lw=0)
-ax.set_xlabel(r"true porosity $\psi$")
-ax.set_ylabel(r"recovered porosity $\hat{\psi}$")
+ax.set_xlabel(r"true porosity $\varepsilon$")
+ax.set_ylabel(r"recovered porosity $\hat{\varepsilon}$")
 ax.set_title("(a) parity, 200-sheet batch")
 ax.grid(True)
 ax = axes[1]
 ax.hist(psi_hat - psi_true, bins=25, color="steelblue", alpha=0.85)
 ax.axvline(0, color="k", lw=0.8)
-ax.axvline(sig, color="r", ls="--", lw=0.8, label=rf"predicted $\pm\sigma_\psi$ = {sig:.4f}")
+ax.axvline(sig, color="r", ls="--", lw=0.8, label=rf"predicted $\pm\sigma_\varepsilon$ = {sig:.4f}")
 ax.axvline(-sig, color="r", ls="--", lw=0.8)
-ax.set_xlabel(r"$\hat{\psi}-\psi$")
+ax.set_xlabel(r"$\hat{\varepsilon}-\varepsilon$")
 ax.set_ylabel("count")
 ax.set_title("(b) recovery error")
 ax.legend()
