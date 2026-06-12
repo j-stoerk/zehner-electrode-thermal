@@ -130,11 +130,11 @@ jupyter nbconvert --to notebook --execute --inplace Electrode.ipynb
 
 ## Next steps
 
-**Highest value (requires lab access)**: the electrode measurement campaign described above — it is also the missing piece for a journal submission (the Knudsen-ZBS + UQ + differentiable-inverse framing is publishable; reviewers will want in-house electrode λ_eff points, especially the two-pressure separator experiment).
+**Highest value (requires lab access)**: the electrode measurement campaign described above is one missing piece for validation of the Knudsen-ZBS + UQ + differentiable-inverse framing is publishable with in-house electrode λ_eff points, especially the two-pressure separator experiment).
 
 **If new data arrives**: high-T or copper data → re-run ML extrapolation splits; industrial-scale Nu_S measurement → validate convection onset; more d/D literature points → sharpen the K(d/D) trend.
 
-**Publication angles**: (a) Knudsen-extended ZBS for battery components with calibrated UQ + inverse QC (primary); (b) practical PINN-vs-LSQ benchmark for inverse parameter recovery; (c) the four-method validation methodology itself.
+**Angles to consider**: (a) Knudsen-extended ZBS for battery components with calibrated UQ + inverse QC (primary); (b) practical PINN-vs-LSQ benchmark for inverse parameter recovery; (c) the four-method validation methodology itself.
 
 ---
 
