@@ -26,6 +26,7 @@ PySR==1.5.10
 MAPIE==0.10.2
 scikit-optimize==0.10.2
 SALib==1.5.2
+numpyro==0.21.0
 
 # Visualization
 matplotlib==3.10.9

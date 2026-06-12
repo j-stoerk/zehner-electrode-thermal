@@ -76,6 +76,9 @@ Reproducibility pitfalls (documented in the notebook): scalar inverse variables 
 ### 2.9 Inverse QC tools
 Porosity inversion: Newton iteration via `jax.lax.scan` (25 steps, exact autodiff Jacobian, clip ψ ∈ [0.05, 0.75]); round-trip exact to 5.6×10⁻¹⁷. Uncertainty: σ_ψ = √(σ_meas² + σ_model²)·λ_eff/|dλ_eff/dψ| (first order), σ_meas = 0.03, σ_model = 0.02 (the packed-bed GP floor). Batch demonstrator: 200 sheets, ψ ~ N(0.30, 0.012), `default_rng(42)`, spec window [0.28, 0.32].
 
+### 2.10 Bayesian calibration (Electrode.ipynb §7.4)
+NumPyro NUTS directly on the JAX closure (no surrogate): 2 chains × (1000 warmup + 1500 samples), target acceptance 0.9, seed PRNGKey(0). Likelihood: relative residuals ~ Normal(0, σ). Priors: λ_s ~ Uniform(anisotropy band: [5,139] graphite / [1.5,5] NMC); φ0 ~ TruncatedNormal(0.0077, 0.01, [0, 0.08]) (VDI rigid-sphere prior); a ~ TruncatedNormal(0, 0.08, [−0.2, 0.3]); b ~ TruncatedNormal(0, 0.2, [0, 0.8]); σ ~ HalfNormal(0.08). Diagnostics: r̂ ≤ 1.01 all parameters/families, ~1 divergence total. Posterior medians agree with §2.4 least squares; thin-anode λ_s 90% interval [7.5, 30.5] W/mK reproduces the §3 profile-likelihood valley; inferred σ per family (4.7/8.5/1.1/15.6%) matches the observed residual levels.
+
 ---
 
 ## 3. Error analysis and edge cases (quantified; Electrode.ipynb §7.3)

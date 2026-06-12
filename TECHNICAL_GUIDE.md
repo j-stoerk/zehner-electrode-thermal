@@ -70,7 +70,9 @@ Figure: `figures/summary/method_validity_envelope.png`
   3. LSQ FD-Jacobian can silently stall at special initial values (lam_init=1.0 with eps_smooth=0.05) — perturb the init.
 
 ### 3.5 Electrode application (`Electrode.ipynb`, `src/electrode_thermal.py`)
-See §4–5 below.
+See §4–5 below. Bayesian calibration (§7.4 of the notebook): NumPyro NUTS on the JAX closure,
+priors phi0~TruncNormal(0.0077, 0.01), lambda_s uniform on the anisotropy band, b>=0; posteriors
+confirm least squares and reproduce the identifiability valley probabilistically.
 
 ---
 

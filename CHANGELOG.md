@@ -4,6 +4,13 @@ All notable changes to the Zehner Closure Model Validation Project.
 
 ---
 
+## [3.6] - 2026-06-12
+
+### Bayesian calibration + manuscript experiments/outlook extension
+
+- **Electrode.ipynb section 7.4**: full Bayesian calibration (NumPyro NUTS, 2 chains x 1000+1500, target accept 0.9) of (lambda_s, phi0, a, b) per family; physics-informed priors (phi0 ~ TruncNormal(0.0077, 0.01), lambda_s uniform on anisotropy band, b >= 0, sigma ~ HalfNormal). Results: posterior medians match least squares; thin-anode lambda_s posterior 7.5-30.5 W/mK independently reproduces the profile-likelihood valley; inferred sigma matches each family's residual level (4.7/8.5/1.1/15.6%); phi0 credible intervals bracket the VDI value. New figure `bayesian_calibration.png`. numpyro added to requirements.
+- **Manuscript**: experimental plan extended (SEM cross-section quantification of phi(Pi) as acceptance criterion (iv); multi-recipe matrix + information-gain experiment design); conclusion outlook restructured into experimental / modelling / statistical / application directions incl. Bayesian calibration, recipe-descriptor learning, conformal UQ, residual-based QC monitoring, and field-type inverse problems as the PINN entry point. 15 pp., 0 errors, 0 overfull.
+
 ## [3.5] - 2026-06-11
 
 ### Manuscript reworked to NeurIPS-style best practices (12 pp., compile-verified)
