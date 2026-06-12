@@ -4,6 +4,17 @@ All notable changes to the Zehner Closure Model Validation Project.
 
 ---
 
+## [3.8] - 2026-06-13
+
+### Manuscript v2, SOC/T state validation, partner package, experiment-design module
+
+- **Manuscript v2 (16 pp., 0 errors)**: new Results subsections "Bayesian calibration and model evidence" (posteriors, pooled fit, WAIC table) and "From coatings to the cell: an 18650 stack test" (+15%, implied 6 uK m^2/W interface, TCR sweep explaining the 0.15-1.4 W/mK literature spread); abstract/contributions/methods/conclusion/outlook synced; refs steinhardt2021 + oehlerdiss added.
+- **Electrode.ipynb 6.4 (state dependence, zero new parameters)**: lithiation-dependent constituent conductivities (Steinhardt Table A.16, Ju, Gotcu) -> predicted SOC swing **+9.8%**, bracketed by measured +7/+9% (partial OCV window) and calculated +12% (full swing); anode-only attribution +14.4% confirms graphite as driver. Temperature trend -0.09 %/K: right sign, below the measured -0.2..-1.7 %/K envelope; omitted T-channels identified.
+- **Partner measurement package**: `publication/measurement_request_partner.md` (self-contained spec: sample matrix, instruments, two-pressure protocol, adhesion, data format, falsification criteria) with computed D-optimal calendering states (graphite {0,0.20,0.21,0.39,0.49,0.50}; NMC {0,0.05,0.05,0.10,0.29,0.30}) and the planning insight that the two-pressure split is ~10% on NMC vs ~1.5% on graphite (run it on the cathode).
+- **New: `src/experiment_design.py`** (greedy D-optimal selection of calendering states via exact JAX Fisher information; pressure-split sizing) + 3 new tests (17 total, all green).
+- **Summary.ipynb section 7**: per-method AI roadmap (SR/PINN/multiphysics/ML win conditions, status-tagged); Multiphysics items 1-2 already marked done.
+- CI: requirements pins corrected (MAPIE 1.4.1 etc.) -> **badge green** (tests + docs); notebook-execution job tolerated.
+
 ## [3.7] - 2026-06-12
 
 ### Cell-level stack validation, pooled Bayes + WAIC, CI overhaul (desk-only tracks 2-4)

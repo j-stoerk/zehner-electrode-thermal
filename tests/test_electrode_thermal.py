@@ -108,3 +108,28 @@ def test_regression_nmc811_zero_fit():
     """NMC811 uncalendered: model 0.505 vs measured 0.492 (+2.7%) -- the headline."""
     lam = float(lambda_eff_coating(0.507, 10e-6, 2.5, LAMBDA_HELIUM, True, d_gas=D_HELIUM))
     assert lam == pytest.approx(0.505, abs=0.005)
+
+
+# ------------------------------------------------- experiment design --------
+from experiment_design import select_calendering_states, pressure_split_gain, trajectory
+
+
+def test_design_selects_unique_states_including_anchor():
+    theta = (24.8, 0.0094, -0.024, 0.0)  # graphite_thin calibration
+    sel = select_calendering_states(theta, psi0=0.60, d_p=18e-6, lam_b=130.0,
+                                    n_select=4, n_candidates=11)
+    assert len(sel) == 4 and len(set(sel)) == 4
+    assert 0.0 in sel  # as-coated anchor always included
+
+
+def test_pressure_split_positive_and_larger_for_small_pores():
+    theta = (24.8, 0.0094, -0.024, 0.0)
+    g_electrode = pressure_split_gain(theta, 0.3, psi0=0.60, d_p=18e-6, lam_b=130.0)
+    g_fine = pressure_split_gain(theta, 0.3, psi0=0.60, d_p=2e-6, lam_b=130.0)
+    assert g_electrode > 0           # lower pressure -> lower conductivity
+    assert g_fine > g_electrode      # smaller pores -> stronger Knudsen split
+
+
+def test_trajectory_monotonic():
+    assert trajectory(0.6, 0.0) == 0.6
+    assert trajectory(0.6, 0.3) < 0.6
