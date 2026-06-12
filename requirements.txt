@@ -23,7 +23,7 @@ jaxlib==0.10.1
 PySR==1.5.10
 
 # Uncertainty quantification & surrogate modeling
-MAPIE==0.10.2
+MAPIE==1.4.1
 scikit-optimize==0.10.2
 SALib==1.5.2
 numpyro==0.21.0
@@ -32,9 +32,8 @@ numpyro==0.21.0
 matplotlib==3.10.9
 
 # Jupyter & notebooks
-jupyter==1.1.1
-nbconvert==7.16.4
+nbconvert==7.17.1
 nbformat==5.10.4
 
 # Optional: for development/debugging
-ipython==8.20.0
+ipython==9.14.1
