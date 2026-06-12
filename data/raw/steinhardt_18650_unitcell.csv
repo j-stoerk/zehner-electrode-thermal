@@ -1,0 +1,7 @@
+layer,thickness_um,porosity,bcb_volfrac,notes,source
+anode_coating,86.7,0.216,0.090,"graphite on Cu, wet (electrolyte-filled), double-coating total per unit cell","Steinhardt et al., J. Energy Storage 42 (2021) 103065, Table 5 / TUM dissertation"
+cathode_coating,66.2,0.171,0.084,"NMC on Al, wet, double-coating total per unit cell","Steinhardt et al., J. Energy Storage 42 (2021) 103065, Table 5"
+separator,12.0,0.450,0.0,"PE-type, wet; appears twice per repeating unit in a wound jelly roll","Steinhardt et al., J. Energy Storage 42 (2021) 103065, Table 5"
+cu_collector,11.0,0.0,0.0,"lambda = 400 W/mK","Steinhardt et al., Table 5"
+al_collector,17.3,0.0,0.0,"lambda = 237 W/mK","Steinhardt et al., Table 5"
+measured_k_perp,,,,"18650 jelly-roll through-plane k = 1.122 W/mK (+-6.16%); meta-analysis cell range 0.15-1.4 W/mK","Steinhardt et al. 2021 (Table A.19) + Steinhardt et al. 2022 meta-analysis / TUM dissertation"

@@ -1,5 +1,7 @@
 # Zehner-Schlünder Closure: Validation & Battery Electrode Application
 
+[![CI](https://github.com/j-stoerk/zehner-electrode-thermal/actions/workflows/test.yml/badge.svg)](https://github.com/j-stoerk/zehner-electrode-thermal/actions/workflows/test.yml)
+
 **One-paragraph summary**: Zehner's 1972 packed-bed closure `Lambda/lambda = lambda_so/lambda + Pe/K` was validated with four independent methods (symbolic regression, gray-box ML + conformal UQ, differentiable JAX multiphysics, inverse PINNs) — it holds up, and every method breaks at exactly the same validity edges. The validated framework was then extended into something **academically new and industrially usable**: a Knudsen-extended, calendering-aware ZBS model for lithium-ion **electrode/separator thermal conductivity** -- validated zero-fit against five published datasets, calibrated to **4.5% MAPE** across 27 calendering states (the first closure to reproduce the measured u-shape), with differentiable inverse tools for **porosity and interface-quality QC** in electrode manufacturing.
 
 ---

@@ -4,6 +4,15 @@ All notable changes to the Zehner Closure Model Validation Project.
 
 ---
 
+## [3.7] - 2026-06-12
+
+### Cell-level stack validation, pooled Bayes + WAIC, CI overhaul (desk-only tracks 2-4)
+
+- **Electrode.ipynb 6.3 (Steinhardt 18650 stack validation)**: mined Steinhardt's TUM dissertation + J. Energy Storage 42 (2021) 103065 (open): real 18650 unit-cell structure transcribed to `data/raw/steinhardt_18650_unitcell.csv`. Bottom-up zero-fit prediction of the measured jelly roll: layer-only 1.289 vs measured 1.122 W/mK (+15%, expected sign); implied per-interface TCR ~6 uK m^2/W (vs 420 torn-down, Vishwakarma) -- winding compression explains it; TCR sweep [0..420] reproduces the meta-analysis cell-level spread 0.15-1.4 W/mK. Cross-model anchor: Oehler KIT dissertation simulations agree with our wet coatings within ~10-25%.
+- **Electrode.ipynb 7.5 (pooled Bayes + WAIC)**: shared-parameter fit of both same-recipe graphite electrodes holds to 6.7/8.6% MAPE (recipe hypothesis confirmed; residual = thickness/interface). WAIC decisively favours quadratic phi(Pi) for 3/4 families (Delta 13-32); NMC811's Delta=1.6 independently rediscovers the unreached interlocking threshold.
+- **CI overhaul (.github/workflows/test.yml)**: pytest suite + nbformat validation + committed-output error check + make_figures smoke test as the required job; notebook execution job (continue-on-error); docs/data existence check updated to current file set. CI badge added to README.
+- Source documents archived locally under `_scratch/litdata/` (Oehler diss 280 pp., Steinhardt diss 128 pp., both open access).
+
 ## [3.6] - 2026-06-12
 
 ### Bayesian calibration + manuscript experiments/outlook extension
