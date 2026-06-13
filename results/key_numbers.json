@@ -1,0 +1,56 @@
+{
+  "calibrated": {
+    "graphite_thin": {
+      "theta": [
+        24.8014,
+        0.0094,
+        -0.0244,
+        0.0
+      ],
+      "mape": 1.8
+    },
+    "graphite_thick": {
+      "theta": [
+        5.0,
+        0.0121,
+        -0.0418,
+        0.0531
+      ],
+      "mape": 5.4
+    },
+    "NMC622": {
+      "theta": [
+        1.6133,
+        0.0171,
+        -0.0894,
+        0.0394
+      ],
+      "mape": 1.4
+    },
+    "NMC811": {
+      "theta": [
+        1.5,
+        0.0048,
+        -0.0491,
+        0.0
+      ],
+      "mape": 9.4
+    }
+  },
+  "zero_fit_mape": {
+    "graphite_thin": 27.3,
+    "graphite_thick": 48.6,
+    "NMC622": 19.1,
+    "NMC811": 29.3
+  },
+  "mape_zero_fit_avg": 31.1,
+  "mape_calibrated_avg": 4.5,
+  "nmc811_uncal_err_pct": 2.7,
+  "reference_values": {
+    "anode_wet": 2.56,
+    "cathode_wet": 0.97,
+    "separator_dry_knudsen": 0.065,
+    "separator_dry_continuum": 0.116
+  },
+  "separator_knudsen_reduction_pct": 62.0
+}

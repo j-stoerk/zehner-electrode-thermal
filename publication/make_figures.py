@@ -47,20 +47,12 @@ SYSTEMS = {
 }
 
 # ------------------------------------------------------ data & calibration --
-gd = pd.read_csv("data/raw/gandert2023_calendering.csv")
-LAM_CC = {"Cu": 400.0, "Al": 237.0}
-s_stack = gd.s_co_um + gd.s_cc_um
-gd["lambda_co_meas"] = gd.s_co_um / (s_stack / gd.lambda_stack_W_mK
-                                     - gd.s_cc_um / gd.collector.map(LAM_CC))
-gd["Pi"] = 0.0
-for s in gd.system.unique():
-    m = gd.system == s
-    gd.loc[m, "Pi"] = 1 - gd.loc[m, "s_co_um"] / gd.loc[m, "s_co_um"].iloc[0]
-
-FAM = {"graphite_thin":  dict(d_p=18e-6, lam_b=130.0, ls_lo=5.0, ls_hi=139.0, ls_init=10.0, zs=80.0),
-       "graphite_thick": dict(d_p=18e-6, lam_b=130.0, ls_lo=5.0, ls_hi=139.0, ls_init=10.0, zs=80.0),
-       "NMC622":         dict(d_p=10e-6, lam_b=24.0,  ls_lo=1.5, ls_hi=5.0,   ls_init=2.5,  zs=2.5),
-       "NMC811":         dict(d_p=10e-6, lam_b=24.0,  ls_lo=1.5, ls_hi=5.0,   ls_init=2.5,  zs=2.5)}
+# Canonical layer (single source of truth): family registry, loader, calibration.
+from electrode_data import FAMILIES, load_gandert, calibrate, lam_eff_contact
+gd = load_gandert()
+gd["lambda_co_meas"] = gd["lam_co_meas"]          # alias kept for plot code below
+# `zs` is the representative zero-fit (phi=0) solid conductivity = ls_mid
+FAM = {k: dict(v, zs=v["ls_mid"]) for k, v in FAMILIES.items()}
 TITLES = {"graphite_thin": "graphite (thin)", "graphite_thick": "graphite (thick)",
           "NMC622": "NMC622", "NMC811": "NMC811"}
 
@@ -69,23 +61,13 @@ def lam_cal(psi, Pi, fam, lam_s, phi0, a, b):
     return float(lambda_eff_coating_contact(psi, fam["d_p"], lam_s, LAMBDA_HELIUM, True,
                                             phi=phi, lambda_bridge=fam["lam_b"], d_gas=D_HELIUM))
 
-def fit_family(name):
-    sub = gd[gd.system == name]
-    fam = FAM[name]
-    def res(p):
-        return [(lam_cal(r.porosity, r.Pi, fam, *p) - r.lambda_co_meas) / r.lambda_co_meas
-                for r in sub.itertuples()]
-    fit = least_squares(res, x0=[fam["ls_init"], 0.008, -0.02, 0.1],
-                        bounds=([fam["ls_lo"], 0, -0.2, 0], [fam["ls_hi"], 0.08, 0.3, 0.8]))
-    return fit.x
-
 def mape_family(name, p):
     sub = gd[gd.system == name]
     fam = FAM[name]
     return np.mean([abs(lam_cal(r.porosity, r.Pi, fam, *p) - r.lambda_co_meas) / r.lambda_co_meas
                     for r in sub.itertuples()]) * 100
 
-params_all = {name: fit_family(name) for name in FAM}
+params_all = {name: calibrate(name, gd)[0] for name in FAM}
 print("calibrated:", {k: np.round(v, 4).tolist() for k, v in params_all.items()})
 
 # ------------------------------------------------------------------- Fig 1 --

@@ -24,6 +24,9 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
 
+    - name: Regenerate canonical key numbers (single source of truth)
+      run: python src/key_results.py
+
     - name: Unit and regression tests
       run: pytest tests/ -v
 
@@ -100,6 +103,6 @@ jobs:
                  data/raw/gandert2023_calendering.csv \
                  data/raw/separator_electrode_literature.csv \
                  data/raw/steinhardt_18650_unitcell.csv \
-                 src/electrode_thermal.py src/zbs_jax.py; do
+                 src/electrode_thermal.py src/zbs_jax.py \n                 src/electrode_data.py src/key_results.py; do
           if [ -f "$f" ]; then echo "OK  $f"; else echo "MISSING $f"; exit 1; fi
         done

@@ -4,6 +4,17 @@ All notable changes to the Zehner Closure Model Validation Project.
 
 ---
 
+## [4.1] - 2026-06-14
+
+### Thorough unification: canonical data/calibration layer + single source of truth for results
+
+- **New `src/electrode_data.py`** -- one canonical family registry (`FAMILIES`), one `load_gandert()` with the stack->coating conversion, one `calibrate()` and `lam_eff_contact()`. Replaces the `FAM` dict + loader + lam_cal that had been copy-pasted with drift across Electrode/Electrode_AI/Electrode_validation notebooks and make_figures.py (the four copies disagreed: ls_mid 80 vs 24.8 vs 10, key names ls_lo/lo/zs).
+- **New `src/key_results.py` -> `results/key_numbers.json`** -- recomputes every headline number (ablation 31.1->4.5%, per-family MAPE 1.8/5.4/1.4/9.4, NMC811 +2.7%, reference lambda 2.56/0.97/0.065) from code+data, no hard-coding.
+- **New `tests/test_key_results.py` (6 tests, 23 total)** -- asserts the canonical numbers reproduce the published values AND that `publication/main.tex` quotes them, so LaTeX/README/docs/notebooks can no longer silently drift from the code.
+- **`publication/make_figures.py` refactored** to import the canonical layer; figures verified content-identical (calibrated parameters byte-identical).
+- CI regenerates key_numbers.json and runs the consistency tests on every push.
+- Deferred (documented): Electrode.ipynb and Electrode_AI.ipynb retain inline definitions (executed artifacts; re-running their NUTS/PySR/PINN purely for dedup is not worth the compute) -- now reconciled to and guarded by the canonical registry + consistency test.
+
 ## [4.0] - 2026-06-13
 
 ### Manuscript v3 + multi-source meta-validation, baseline head-to-head, Sobol

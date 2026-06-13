@@ -100,6 +100,11 @@ jupyter nbconvert --to notebook --execute --inplace Electrode.ipynb
 
 ---
 
+
+## Reproducibility architecture
+
+The science has one source of truth. `src/electrode_data.py` holds the canonical family registry, data loader, and calibration; `src/key_results.py` recomputes every headline number into `results/key_numbers.json`; and `tests/test_key_results.py` asserts the manuscript quotes those exact numbers. Notebooks and `publication/make_figures.py` import the canonical layer, so code, figures, manuscript and docs cannot drift apart (CI enforces it on every push).
+
 ## File structure
 
 ```
