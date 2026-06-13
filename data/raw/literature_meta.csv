@@ -1,0 +1,13 @@
+source,year,method,system,kind,state,porosity,porosity_assumed,d_p_um,lam_meas,notes
+Burheim,2013,steady-state,graphite_anode,coating,dry,0.35,1,17,0.30,"SLP50; porosity not stated, typical assumed"
+Burheim,2013,steady-state,graphite_anode,coating,wet,0.35,1,17,0.89,"+- 0.04"
+Burheim,2013,steady-state,LCO_cathode,coating,dry,0.30,1,8,0.36,"+- 0.003"
+Burheim,2013,steady-state,LCO_cathode,coating,wet,0.30,1,8,1.10,"+- 0.06"
+Marconnet,2018,steady-state,graphite_anode,coating,dry,0.35,1,17,0.57,"CMS graphite, 26650 teardown stack"
+Marconnet,2018,steady-state,graphite_anode,coating,wet,0.35,1,17,1.35,"+- 0.49"
+Marconnet,2018,steady-state,LMO_cathode,coating,dry,0.30,1,8,0.16,"+- 0.06"
+Marconnet,2018,steady-state,LMO_cathode,coating,wet,0.30,1,8,0.45,"+- 0.09"
+Marconnet,2018,steady-state,separator_ceramic,separator,dry,0.45,1,0.3,0.10,"ceramic-coated"
+Marconnet,2018,steady-state,separator_ceramic,separator,wet,0.45,1,0.3,0.11,""
+Richter,2017,steady-state,separator_PE,separator,dry,0.41,1,0.3,0.07,"low end of range"
+Richter,2017,steady-state,separator_PE,separator,dry,0.41,1,0.3,0.18,"high end of range (compacted)"

@@ -4,6 +4,18 @@ All notable changes to the Zehner Closure Model Validation Project.
 
 ---
 
+## [4.0] - 2026-06-13
+
+### Manuscript v3 + multi-source meta-validation, baseline head-to-head, Sobol
+
+- **Abstract rewritten to 249 words** (was 421; journal-count ~240).
+- **LFA vs guarded-hot-plate measurement gap addressed** (Gandert 2025): new Limitation (9) -- LFA reads up to ~2x GHP because it excludes inter-sample contact resistance; the effect is ~multiplicative so phi(Pi) shape, u-shape, ablation, WAIC and transfer findings are method-robust, only absolute lambda_s/phi0 scale with method. Bibliography entry added.
+- **New `Electrode_validation.ipynb`** (lightweight, in CI validation list) + `data/raw/literature_meta.csv` (12 measured points, Burheim/Marconnet/Richter):
+  1. Meta-validation: zero-fit at through-plane literature lambda_s -> median 37%, 83% within factor 2; LCO to 5%; residuals = inter-lab scatter (wet anode values differ 50% between labs) + LMO + 2 known separator anomalies. Not killed (structured residuals).
+  2. Head-to-head on wet coatings: Bruggeman 185% (percolating solid), Maxwell-Eucken 19% (contrast-limited, no mechanism), ZBS+contact spans dry+wet+calendering. Vadakkepatt 2016's compression-dependent Bruggeman exponent independently corroborates phi(Pi).
+  3. Sobol (4096 samples, converged CI 0.028): porosity 0.46, contact pair (phi,lam_b) ~0.48, particle size ~0 -> measurement-priority list.
+- Manuscript: new subsection 'Multi-source meta-validation and sensitivity' (17 pp, 0 errors). Two figures in figures/electrode_val/.
+
 ## [3.9] - 2026-06-13
 
 ### Electrode_AI.ipynb -- the three no-new-data AI roadmap items, demonstrated

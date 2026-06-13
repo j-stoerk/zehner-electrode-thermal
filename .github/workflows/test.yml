@@ -33,7 +33,7 @@ jobs:
         import nbformat, sys
         notebooks = ['Summary.ipynb', 'PINN.ipynb', 'Multiphysics.ipynb',
                      'ML.ipynb', 'Symbolic Regression.ipynb', 'Electrode.ipynb',
-                     'Electrode_AI.ipynb', 'preliminaries.ipynb']
+                     'Electrode_AI.ipynb', 'Electrode_validation.ipynb', 'preliminaries.ipynb']
         bad = 0
         for nb_path in notebooks:
             try:
@@ -50,7 +50,7 @@ jobs:
         import nbformat, sys
         notebooks = ['Summary.ipynb', 'PINN.ipynb', 'Multiphysics.ipynb',
                      'ML.ipynb', 'Symbolic Regression.ipynb', 'Electrode.ipynb',
-                     'Electrode_AI.ipynb', 'preliminaries.ipynb']
+                     'Electrode_AI.ipynb', 'Electrode_validation.ipynb', 'preliminaries.ipynb']
         total = 0
         for nb_path in notebooks:
             nb = nbformat.read(nb_path, as_version=4)
