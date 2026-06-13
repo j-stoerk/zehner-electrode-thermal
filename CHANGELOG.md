@@ -4,6 +4,17 @@ All notable changes to the Zehner Closure Model Validation Project.
 
 ---
 
+## [3.9] - 2026-06-13
+
+### Electrode_AI.ipynb -- the three no-new-data AI roadmap items, demonstrated
+
+- **New notebook `Electrode_AI.ipynb`** (separate from the AI-free publication artifact `Electrode.ipynb`), executing the Summary section-7 roadmap items reachable with synthetic physics or the in-repo Gandert data:
+  1. **PySR form discovery**: free symbolic search over {+,-,*} on closure-inverted phi values returns a low-order polynomial in Pi with constant term ~0.009 -- independently matching the VDI rigid-sphere value (0.0077) and the fitted phi0 (0.0094); confirms the ansatz function class without supervision (caveat: 6 points/family, exact degree not identifiable).
+  2. **Conformal leave-one-family-out**: 87% mean coverage vs 90% nominal; under-covers exactly NMC811 (62%) -- the same family WAIC flagged in 7.5, two independent diagnostics agreeing on the outlier.
+  3. **PINN field inverse (synthetic flash-thermography)**: recovers a spatially varying interface-conductance H(x) from 4 noisy IR frames; delamination located to one grid point (x=0.58 vs 0.60), 10.6% field L2 error, baseline conductance to ~6%; depth over-smoothed (honest PINN limit). The 'unknown is a field' regime the PINN-vs-LSQ benchmark reserved for neural methods.
+- Three vector figures in `figures/electrode_ai/`. Summary.ipynb roadmap tags updated (SR form-discovery, conformal, PINN delamination now [done]/[demonstrated]).
+- Electrode_AI.ipynb kept out of CI execute-notebooks (PySR/Julia + torch too heavy for the runner); nbformat-validated and error-checked like the others.
+
 ## [3.8] - 2026-06-13
 
 ### Manuscript v2, SOC/T state validation, partner package, experiment-design module
