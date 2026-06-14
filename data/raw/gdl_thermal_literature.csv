@@ -1,0 +1,7 @@
+gdl,ptfe_pct,compression_bar,state,k_through_W_mK,porosity,source
+Toray TGP-H-060,0,4.6,dry,0.41,0.78,"Burheim et al. 2011 (via Pfrang/IntechOpen Table 2); low-load end"
+Toray TGP-H-060,0,13.9,dry,0.66,0.78,"Burheim et al. 2011; high-load end (k rises with compaction)"
+E-Tek EC-CC1-060,0,4.6,dry,0.28,0.80,"Burheim et al. 2011; low-load end"
+E-Tek EC-CC1-060,0,13.9,dry,0.32,0.80,"Burheim et al. 2011; high-load end"
+SGL Sigracet 10 AA,5,4.6,dry,0.30,0.80,"Burheim et al. 2011; low-load end"
+SGL Sigracet 10 AA,5,13.9,dry,0.42,0.80,"Burheim et al. 2011; high-load end"
