@@ -4,6 +4,13 @@ All notable changes to the Zehner Closure Model Validation Project.
 
 ---
 
+## [4.2] - 2026-06-14
+
+### Pip-installable package
+
+- **`pyproject.toml`** makes the closure an installable package (`zbs-electrode`, `pip install -e .`): flat src/ modules via `package-dir`+`py-modules`, so `import electrode_thermal` works anywhere and the `sys.path.insert("src")` hacks are no longer required (kept as a bare-checkout fallback in notebooks). Optional extras `[ml]`, `[dev]`; core deps loose, exact pins remain in requirements.txt. Citable/installable for the publication code release.
+- CI installs the package (`pip install -e .`) in the test and notebook jobs; pyproject added to the docs existence check. 23 tests green.
+
 ## [4.1] - 2026-06-14
 
 ### Thorough unification: canonical data/calibration layer + single source of truth for results

@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zbs-electrode"
+version = "1.0.0"
+description = "Knudsen-extended, calendering-aware Zehner-Bauer-Schluender closure for the effective thermal conductivity of lithium-ion electrode coatings and separators, with a differentiable inverse for manufacturing QC."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Julius Stoerk"}]
+keywords = ["thermal conductivity", "lithium-ion battery", "calendering",
+            "Knudsen effect", "effective-medium theory", "quality control"]
+
+# Core runtime dependencies (loose); exact pinned versions for full
+# reproducibility of the published results are in requirements.txt.
+dependencies = [
+    "numpy",
+    "scipy",
+    "pandas",
+    "jax",
+    "jaxlib",
+]
+
+[project.optional-dependencies]
+# Heavy / analysis-only extras used by individual notebooks, not the core closure.
+ml = ["scikit-learn", "numpyro", "matplotlib"]
+dev = ["pytest"]
+
+[project.urls]
+Repository = "https://github.com/j-stoerk/zehner-electrode-thermal"
+
+# Flat module layout under src/: `pip install -e .` puts these on the import
+# path, so `import electrode_thermal` works anywhere and the sys.path.insert
+# hacks in notebooks/tests become unnecessary. Intra-module imports stay flat.
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = [
+    "zbs",
+    "zbs_jax",
+    "electrode_thermal",
+    "electrode_data",
+    "experiment_design",
+    "key_results",
+    "materials",
+    "fluid_properties",
+    "build_dataset",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

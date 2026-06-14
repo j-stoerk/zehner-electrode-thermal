@@ -1,3 +1,25 @@
+Metadata-Version: 2.4
+Name: zbs-electrode
+Version: 1.0.0
+Summary: Knudsen-extended, calendering-aware Zehner-Bauer-Schluender closure for the effective thermal conductivity of lithium-ion electrode coatings and separators, with a differentiable inverse for manufacturing QC.
+Author: Julius Stoerk
+License: MIT
+Project-URL: Repository, https://github.com/j-stoerk/zehner-electrode-thermal
+Keywords: thermal conductivity,lithium-ion battery,calendering,Knudsen effect,effective-medium theory,quality control
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: jax
+Requires-Dist: jaxlib
+Provides-Extra: ml
+Requires-Dist: scikit-learn; extra == "ml"
+Requires-Dist: numpyro; extra == "ml"
+Requires-Dist: matplotlib; extra == "ml"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+
 # Zehner-Schlünder Closure: Validation & Battery Electrode Application
 
 [![CI](https://github.com/j-stoerk/zehner-electrode-thermal/actions/workflows/test.yml/badge.svg)](https://github.com/j-stoerk/zehner-electrode-thermal/actions/workflows/test.yml)
@@ -100,15 +122,6 @@ jupyter nbconvert --to notebook --execute --inplace Electrode.ipynb
 
 ---
 
-
-## Installation
-
-```bash
-pip install -e .            # installs the closure as an importable package (zbs-electrode)
-pip install -r requirements.txt   # exact pinned versions to reproduce the published results
-```
-
-After `pip install -e .`, `import electrode_thermal`, `import electrode_data`, etc. work from anywhere — no `sys.path` manipulation needed. The notebooks retain a `sys.path` fallback so they also run on a bare checkout.
 
 ## Reproducibility architecture
 
