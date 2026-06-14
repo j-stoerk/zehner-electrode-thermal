@@ -17,3 +17,8 @@ publication/main.out
 publication/main.log
 publication/vortrag_20min_DE.txt
 tmp_*.py
+
+# build artifacts
+*.egg-info/
+build/
+dist/
