@@ -4,6 +4,20 @@ All notable changes to the Zehner Closure Model Validation Project.
 
 ---
 
+## [5.0] - 2026-06-14
+
+### Manuscript repositioning: honest differentiation from Oehler 2021; AI as the engine
+
+A close reading of Oehler's 2021 thesis showed the original framing overlapped it substantially: Oehler's electrode closure is already ZBS-based, already includes the Smoluchowski/Knudsen correction (He 0.15 -> 0.03-0.06 W/mK), already treats particle contact area, and is LFA-validated coating-to-cell. The Knudsen "contribution" was therefore not novel. The manuscript was repositioned to claim only what Oehler does not do:
+
+- **Abstract + intro rewritten** to credit Oehler/oehlerdiss for the forward closure and the Knudsen correction explicitly; the three "gaps" recast as: (i) no process resolution, (ii) not invertible, (iii) no uncertainty.
+- **Contributions recast** C1-C5: C1 process-resolved phi(Pi) reproducing the u-shape Oehler's static-contact model misses; C2 differentiable inverse -> QC; C3 uncertainty + transfer; **C4 the four data-driven methods as the enabling engine** (autodiff -> inverse+Bayes; GP+conformal -> UQ; SR -> phi form discovery; PINN -> delamination field inverse); C5 generalization + falsifiable test. Knudsen demoted to credited background.
+- **New subsection "data-driven methods as the enabling engine"** mapping each method to the capability it provides.
+- **New subsection "generalization to fuel-cell GDLs"**: both extensions transfer (point-contact underpredicts 6-8x; phi rises 0.006->0.010 with compaction; Knudsen negligible for um fibre paper, -70% for 100 nm MPL). Backed by Generalization_GDL.ipynb + data/raw/gdl_thermal_literature.csv (Burheim 2010 via Pfrang/IntechOpen).
+- Cell-level FE models (Guo 2010, Jeon 2011, Yue 2017) and Chen 2017 cited as downstream demand / microstructure context. Bibliography +6 entries.
+- Formatting fixes: "3%-6%" range (was rendering as "36%"), "noise level" (fl-ligature dropout in "floor"), ablation subsection retitled.
+- 18 pp, 0 errors, abstract 237 words; canonical-number consistency test still passes.
+
 ## [4.2] - 2026-06-14
 
 ### Pip-installable package
